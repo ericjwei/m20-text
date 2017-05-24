@@ -9,13 +9,16 @@ library(ggplot2)
 library(rvest)
 
 # Read in web page
-
+classes <- read_html("https://www.washington.edu/students/crscat/info.html")
 
 # Extract descriptions of each course into a dataframe (may take multiple steps)
+titles <- classes %>% html_node('p b') %>% html_text()
+info <- classes %>% html_nodes('p') %>% html_text()
+classes <- data.frame(title = titles, description = info[])
 
 
 # How many courses are in the catalogue?
-
+length(titles)
 
 # Create a tidytext sturcture of all words
 
